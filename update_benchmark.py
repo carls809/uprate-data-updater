@@ -2,12 +2,16 @@ import json
 import requests
 from datetime import datetime
 
+# ✅ Correct GitHub raw URL (MIT-licensed)
 url = "https://raw.githubusercontent.com/lcnlvrz/opensalary/main/salaries.json"
+
 response = requests.get(url)
 if response.status_code == 200:
     salaries = response.json()
 else:
+    print("Response code:", response.status_code)
     raise Exception("Failed to fetch data")
+
 
 output = {
     "last_updated": datetime.now().isoformat(),
