@@ -2,15 +2,22 @@ import json
 import requests
 from datetime import datetime
 
-# ✅ Correct GitHub raw URL (MIT-licensed)
-url = "https://raw.githubusercontent.com/lcnlvrz/opensalary/main/salaries.json"
+url = "https://carlo-ai.github.io/opensalary-backup/salaries.json"
 
-response = requests.get(url)
+headers = {
+    "User-Agent": "Mozilla/5.0"
+}
+
+response = requests.get(url, headers=headers)
+
 if response.status_code == 200:
     salaries = response.json()
 else:
-    print("Response code:", response.status_code)
+    print("Error fetching data. Status:", response.status_code)
     raise Exception("Failed to fetch data")
+
+# [Then process the salaries data as before...]
+
 
 
 output = {
